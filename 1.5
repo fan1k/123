@@ -1,0 +1,49 @@
+class ListNode {
+    constructor(val = 0, next = null) {
+        this.val = val;
+        this.next = next;
+    }
+}
+
+function rotateRight(head, k) {
+    if (!head || !head.next) return head;
+
+    let length = 1;
+    let current = head;
+    while (current.next !== null) {
+        length++;
+        current = current.next;
+    }
+
+    k = k % length;
+    if (k === 0) return head;
+
+    let newTail = head;
+    for (let i = 1; i < length - k; i++) {
+        newTail = newTail.next;
+    }
+
+    let newHead = newTail.next;
+    newTail.next = null;
+    current.next = head;
+
+    return newHead;
+}
+
+function createList(arr) {
+    let head = new ListNode(arr[0]);
+    let current = head;
+    for (let i = 1; i < arr.length; i++) {
+        current.next = new ListNode(arr[i]);
+        current = current.next;
+    }
+    return head;
+}
+
+function printList(head) {
+    let current = head;
+    while (current !== null) {
+        console.log(current.val);
+        current = current.next;
+    }
+}
