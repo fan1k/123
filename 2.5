@@ -1,0 +1,13 @@
+PYTHON
+
+a = map(int, input().split())
+a = list(a)
+a = sorted(a)
+s = max(a[0] * a[1] * a[2], a[len(a) - 1] * a[len(a) - 2] * a[len(a) - 3])
+s = max(s, a[len(a) - 1] * a[0] * a[1])
+if s == a[0] * a[1] * a[2]:
+    print(a[0], a[1], a[2])
+elif s == a[len(a) - 1] * a[len(a) - 2] * a[len(a) - 3]:
+    print(a[len(a) - 1], a[len(a) - 2], a[len(a) - 3])
+else:
+    print(a[len(a) - 1], a[0], a[1])
