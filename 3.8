@@ -1,0 +1,25 @@
+function goblinQueue(N, queries) {
+    let queue = [];
+    let result = [];
+
+    queries.forEach((query) => {
+        const parts = query.split(" ");
+
+        if (parts[0] === "+") {
+            queue.push(parseInt(parts[1]));
+        } else if (parts[0] === "*") {
+            const goblin = parseInt(parts[1]);
+            const middle = Math.floor(queue.length / 2);
+            queue.splice(middle, 0, goblin);
+        } else if (parts[0] === "-") {
+            result.push(queue.shift());
+        }
+    });
+
+    return result.join("\n");
+}
+
+const N = 7;
+const queries = ["+ 1", "+ 2", "-", "+ 3", "+ 4", "-", "-"];
+
+console.log(goblinQueue(N, queries));
