@@ -1,0 +1,26 @@
+function evalRPN(tokens) {
+    let stack = [];
+
+    for (let token of tokens) {
+        if (token === "+" || token === "-" || token === "*") {
+            let b = stack.pop();
+            let a = stack.pop();
+
+            if (token === "+") {
+                stack.push(a + b);
+            } else if (token === "-") {
+                stack.push(a - b);
+            } else if (token === "*") {
+                stack.push(a * b);
+            }
+        } else {
+            stack.push(parseInt(token));
+        }
+    }
+
+    return stack.pop();
+}
+
+let input = "8 9 + 1 7 - *";
+let tokens = input.trim().split(" ");
+console.log(evalRPN(tokens));
